@@ -1,6 +1,6 @@
-# 📚 EduFeesMS - Microservices for Student & Fee Management
+# 📚 Skiply (EduFeesMS) - Microservices for Student & Fee Management
 
-EduFeesMS is a clean and modular **Spring Boot microservices project** designed to manage student records and fee collection in a scalable, real-world style.
+Skiply is a clean and modular **Spring Boot microservices project** designed to manage student records and fee collection in a scalable, real-world style.
 
 ---
 
@@ -24,7 +24,7 @@ EduFeesMS is split into two independent services:
 
 ## 🖼 Architecture Flow
 
-![Service Flow Diagram](./assets/service_flow_diagram.png)
+<img width="1024" height="1024" alt="ChatGPT Image Jul 14, 2025, 01_00_30 AM" src="https://github.com/user-attachments/assets/e79690c1-5ecd-4f85-be5c-acf610eb2465" />
 
 ---
 
