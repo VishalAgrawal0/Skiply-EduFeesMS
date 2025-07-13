@@ -1,0 +1,183 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8082",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Receipt API",
+      "description": "Operations related to fee collection and receipts"
+    }
+  ],
+  "paths": {
+    "/api/v1/receipts": {
+      "post": {
+        "tags": [
+          "Receipt API"
+        ],
+        "summary": "Create a new receipt for a student",
+        "operationId": "createReceipt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReceiptDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "500": {
+            "description": "Internal server error"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "200": {
+            "description": "Receipt created successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceiptDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/receipts/{id}": {
+      "get": {
+        "tags": [
+          "Receipt API"
+        ],
+        "summary": "Get receipt by receipt ID",
+        "operationId": "getReceiptById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "Receipt found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceiptDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Receipt not found"
+          }
+        }
+      }
+    },
+    "/api/v1/receipts/student/{studentId}": {
+      "get": {
+        "tags": [
+          "Receipt API"
+        ],
+        "summary": "Get all receipts for a student by student ID",
+        "operationId": "getReceiptsByStudent",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "No receipts found for the student"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "Receipts retrieved successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReceiptDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ReceiptDTO": {
+        "required": [
+          "amount",
+          "paymentDate",
+          "studentId"
+        ],
+        "type": "object",
+        "properties": {
+          "studentId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "paymentDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "receiptId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentMode": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "referenceId": {
+            "type": "string"
+          },
+          "cardNumberMasked": {
+            "type": "string"
+          },
+          "cardType": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
