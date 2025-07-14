@@ -38,7 +38,6 @@ EduFeesMS is split into two independent services:
 - Gradle
 - H2 In-Memory DB
 - JUnit 5 + Mockito
-- No Lombok (Manual Getters, Setters, Constructors used)
 
 ---
 
